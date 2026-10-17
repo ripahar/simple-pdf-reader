@@ -1,0 +1,6 @@
+[run]
+branch = True
+omit =
+    */site-packages/*
+    */__init__.py
+    simple_pdf_reader.py:if __name__ == .__main__.:*
