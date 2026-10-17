@@ -1,0 +1,4 @@
+# Optional OCR support for scanned PDFs.
+# Install this file in addition to requirements.txt.
+ocrmypdf>=16.0.0
+# Tesseract OCR must also be installed separately and available on PATH.
