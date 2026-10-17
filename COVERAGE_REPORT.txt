@@ -1,0 +1,10 @@
+Release 5 validation status
+============================
+- Python syntax check: passed.
+- Automated tests executed in this environment using xvfb-run: 30 passed.
+- Word export end-to-end conversion: not executed here because pdf2docx is not installed in the build environment.
+- OCR workflow: not executed; OCRmyPDF and Tesseract are optional external dependencies.
+- Manual Windows validation: still required, especially for Word conversion output and packaged executable behavior.
+
+Do not treat this file as a numeric code coverage report. Generate a fresh report locally with:
+  python -m pytest -q --cov=simple_pdf_reader --cov-branch --cov-report=term-missing
