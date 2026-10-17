@@ -1,0 +1,37 @@
+RELEASE 5 — SAVE AS WORD DOCUMENT
+
+New feature
+- File > Save As Word Document exports to editable DOCX using pdf2docx.
+- Images and graphics are handled by the converter where supported.
+- Current-session text overlays and signature images are applied to a temporary PDF before conversion.
+- The source PDF is not modified by Word export.
+- Pages with no selectable text and embedded images trigger an OCR question.
+- OCR can be enabled with OCRmyPDF and Tesseract installed separately.
+- Conversion runs in a background thread, with success/error feedback.
+
+Install
+  python -m pip install -r requirements.txt
+
+Optional OCR
+  python -m pip install -r requirements-ocr.txt
+Then install Tesseract OCR for Windows and ensure its executable is on PATH.
+
+Known limitations
+- PDF-to-Word conversion cannot perfectly reconstruct every layout.
+- Headers, footers, page numbers, tables, and graphics are preserved only as well as the converter can reconstruct them.
+- Reader-added text and signatures are included by flattening those overlays into a temporary PDF before conversion.
+- Other pre-existing PDF markup annotations may not be preserved as native Word annotations.
+- The complete conversion could not be executed in the build environment because pdf2docx is not installed here. The Python code compiled and the available automated test suite passed.
+
+Validation improvement (review build)
+- After conversion, the app writes <output>_conversion_report.txt.
+- The report compares source PDF text with DOCX paragraphs, tables, headers and footers.
+- A warning is shown when token coverage suggests possible content loss.
+- This is a detection safeguard, not a table-layout repair; visual review remains necessary.
+- Exact page count/overlap validation requires rendering DOCX via Microsoft Word or LibreOffice.
+
+General header/banner preservation (review build)
+- New brand-agnostic detector compares rendered top bands on sampled PDF pages.
+- When the same top band repeats with high visual similarity, it inserts that band as a Word header image.
+- It skips preservation when sampled page tops differ; this avoids assuming every PDF has a repeating banner.
+- It does not guarantee perfect header detection on every PDF; inspect the conversion report and output.
