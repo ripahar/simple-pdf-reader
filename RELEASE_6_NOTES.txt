@@ -1,0 +1,18 @@
+RELEASE 6 — MULTI-TAB PDF READER
+
+New feature
+- Multiple PDFs can be open in tabs in the same application window.
+- File > Open supports selecting multiple PDFs; each document opens in its own tab.
+- Opening a PDF from Windows using the EXE creates/loads a tab in the app instance launched by Windows.
+- Added File > New Tab and File > Close Tab.
+- Keyboard shortcuts: Ctrl+O (open PDFs), Ctrl+T (new tab), Ctrl+W (close tab).
+- The existing PDF viewing, annotation, signature, printing, and Word export features remain available for the active tab.
+
+Build
+- Run build_windows_exe.bat on Windows to create dist\SimplePDFReader.exe.
+- Replace the previous EXE and reassign it as the default PDF app if needed.
+
+Validation
+- Python syntax compilation passed.
+- The four available Word validation/header tests passed.
+- Full Tkinter GUI tests could not be executed in this Linux environment because no graphical display is available. Manual Windows testing is still recommended.
